@@ -1,0 +1,26 @@
+agent:
+  collectionInterval: 30
+  apiTimeout: 10
+
+exporter:
+  type: "stdout"  # Change from "http" to "stdout"
+  stdout:
+    enabled: true
+  http:
+    endpoint: "http://metrics-collector:8080/metrics"
+    timeout: 5
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer ${API_TOKEN:-default-token}"
+
+api:
+  port: "8080"
+  healthCheckTimeout: 5
+
+logging:
+  level: "info"
+  format: "json"
+
+k8s:
+  inCluster: true
+  kubeconfig: ""
